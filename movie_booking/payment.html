@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineTix - Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="flex flex-col min-h-screen bg-gray-900 text-white">
+
+  <!-- Navbar -->
+  <header class="bg-black/90 sticky top-0 z-10">
+    <div class="container mx-auto px-4 flex justify-between py-4">
+      <a href="index.html" class="text-2xl font-bold text-primary-500">CineMax</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-grow">
+    <section class="py-12 container mx-auto px-4 max-w-4xl text-lg md:text-xl">
+
+      <h2 class="text-3xl font-bold mb-8 text-center">Confirm Payment</h2>
+
+      <!-- Booking Summary -->
+      <div id="bookingSummary" class="bg-gray-800 p-8 rounded-xl mb-8 text-base md:text-2xl space-y-2">
+        <p><strong>Movie:</strong> Loading...</p>
+        <p><strong>Date & Time:</strong> Loading...</p>
+        <p><strong>Seats:</strong> Loading...</p>
+        <p><strong>Total:</strong> Loading...</p>
+      </div>
+
+      <!-- Payment Method -->
+      <h3 class="text-2xl font-semibold mb-6">Payment Method</h3>
+      <label class="block mb-3"><input type="radio" name="payment" checked /> Credit Card</label>
+      <label class="block mb-3"><input type="radio" name="payment" /> Debit Card</label>
+      <label class="block mb-3"><input type="radio" name="payment" /> UPI</label>
+
+      <!-- Confirm Button -->
+      <button id="confirmBtn" class="mt-8 bg-primary-600 w-full px-8 py-4 rounded-lg text-2xl font-semibold">
+        Confirm Booking
+      </button>
+
+      <!-- Confirmation Details -->
+      <div id="confirmationDetails" class="hidden mt-12 bg-gray-800 p-10 rounded-2xl shadow-xl space-y-4">
+        <h3 class="text-xl mb-8 text-green-400 text-center">🎉 Booking Confirmed!</h3>
+        <p><strong>Movie:</strong> <span id="confMovie"></span></p>
+        <p><strong>Date & Time:</strong> <span id="confTime"></span></p>
+        <p><strong>Seats:</strong> <span id="confSeats"></span></p>
+        <p><strong>Total Paid:</strong> ₹ <span id="confTotal"></span></p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script src="js/include.js"></script>
+
+  <!-- Script -->
+  <script>
+    // Helper to get query param
+    function q(name) {
+      return new URLSearchParams(location.search).get(name);
+    }
+
+    // Get values from query params
+    const movie = q('id') || 'Inception';
+    const time = q('time') || 'Mon, 25 Sept 1:45 PM';
+    const seats = q('seats') || 'None';
+    const total = q('total') || '320';
+
+    // Update booking summary
+    const summaryPs = document.querySelectorAll('#bookingSummary p');
+    summaryPs[0].innerHTML = `<strong>Movie:</strong> ${movie}`;
+    summaryPs[1].innerHTML = `<strong>Date & Time:</strong> ${time}`;
+    summaryPs[2].innerHTML = `<strong>Seats:</strong> ${seats}`;
+    summaryPs[3].innerHTML = `<strong>Total:</strong> Rs ${total}`;
+
+    // Update confirmation details
+    const confMovie = document.getElementById('confMovie');
+    const confTime = document.getElementById('confTime');
+    const confSeats = document.getElementById('confSeats');
+    const confTotal = document.getElementById('confTotal');
+
+    confMovie.textContent = movie;
+    confTime.textContent = time;
+    confSeats.textContent = seats;
+    confTotal.textContent = total;
+
+    // Confirm button logic
+    const confirmBtn = document.getElementById("confirmBtn");
+    const confirmationDetails = document.getElementById("confirmationDetails");
+
+    confirmBtn.addEventListener("click", () => {
+      // Show toast
+      const toast = document.createElement("div");
+      toast.textContent = "🎉 Booking Confirmed!";
+      toast.className = "fixed top-5 right-5 bg-green-600 text-white px-4 py-2 rounded shadow-lg animate-bounce";
+      document.body.appendChild(toast);
+
+      setTimeout(() => toast.remove(), 3000);
+
+      // Disable button
+      confirmBtn.disabled = true;
+      confirmBtn.classList.add("bg-gray-600", "cursor-not-allowed");
+      confirmBtn.textContent = "Booking Confirmed";
+
+      // Show confirmation details
+      confirmationDetails.classList.remove("hidden");
+    });
+  </script>
+
+</body>
+
+</html>

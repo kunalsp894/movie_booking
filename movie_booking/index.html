@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineMax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+
+<body class="flex flex-col min-h-screen bg-gray-900 text-white">
+    <!-- Navbar -->
+    <header class="bg-black/90 sticky top-0 z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="text-2xl font-bold text-primary-500">CineMax</a>
+
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-primary-500">Home</a>
+                <a href="index.html#now-showing" class="hover:text-primary-500">Now Showing</a>
+                <a href="index.html#upcoming" class="hover:text-primary-500">Upcoming</a>
+                <a href="contact.html" class="hover:text-primary-500">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- Profile Icon (hidden until login) -->
+                <div id="profileContainer" class="hidden items-center space-x-2 cursor-pointer relative">
+                    <i class="fas fa-user-circle text-3xl text-primary-500"></i>
+                    <span id="profileName" class="text-sm font-semibold text-gray-300"></span>
+
+                    <!-- Dropdown (click to toggle) -->
+                    <div id="profileDropdown"
+                        class="absolute top-10 right-0 bg-gray-800 border border-gray-700 rounded-lg p-4 min-w-[14rem] max-w-[18rem] shadow-lg hidden z-20 whitespace-normal">
+                        <p class="text-gray-300 mb-3 break-words" id="profileEmail"></p>
+                        <button id="logoutBtn"
+                            class="w-full bg-primary-600 hover:bg-primary-700 py-2 rounded font-semibold transition">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Login Button -->
+                <a id="loginBtn" href="login.html"
+                    class="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-lg transition">
+                    Login / Register
+                </a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Main -->
+    <main class="flex-grow">
+
+        <!-- Carousel -->
+        <section class="relative w-full h-[750px] overflow-hidden bg-black"> <!-- Slides -->
+            <div id="carousel" class="flex transition-transform duration-700 ease-in-out h-full">
+                <div class="min-w-full h-full relative flex justify-center items-center">
+                    <img src="images/card-1.jpg" class="w-full h-full object-contain" />
+                </div>
+                <div class="min-w-full h-full relative flex justify-center items-center">
+                    <img src="images/card-2.jpg" class="w-full h-full object-contain" />
+                </div>
+                <div class="min-w-full h-full relative flex justify-center items-center">
+                    <img src="images/card-3.jpg" class="w-full h-full object-contain" />
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button id="prev"
+                class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">
+                &#10094;
+            </button>
+            <button id="next"
+                class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70">
+                &#10095;
+            </button>
+
+            <!-- Dots -->
+            <div class="absolute bottom-4 w-full flex justify-center space-x-3">
+                <span class="dot w-3 h-3 rounded-full bg-gray-400 cursor-pointer"></span>
+                <span class="dot w-3 h-3 rounded-full bg-gray-600 cursor-pointer"></span>
+                <span class="dot w-3 h-3 rounded-full bg-gray-600 cursor-pointer"></span>
+            </div>
+        </section>
+
+        <!-- Now Showing -->
+        <section id="now-showing" class="py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold mb-6">Now Showing</h2>
+
+                <div class="flex space-x-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-700">
+
+                    <!-- Movie 1 -->
+                    <div class="min-w-[350px] bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="images/mirai.avif" class="w-full h-80 object-contain" />
+                        <div class="p-5">
+                            <h3 class="text-2xl font-bold">Mirai</h3>
+                            <p class="text-gray-400 mb-3">⭐ 8.9/10 | Action, Adventure, Fantasy, Thriller</p>
+                            <a href="movie-details.html?id=mirai"
+                                class="block text-center bg-primary-600 px-4 py-2 rounded-lg">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Movie 2 -->
+                    <div class="min-w-[350px] bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="images/dashavatar.jpg.avif" class="w-full h-80 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-2xl font-bold">Dashavatar</h3>
+                            <p class="text-gray-400 mb-3">⭐ 9.1/10 | Adventure, Drama, Thriller</p>
+                            <a href="movie-details.html?id=dashavatar"
+                                class="block text-center bg-primary-600 px-4 py-2 rounded-lg">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Movie 3 -->
+                    <div class="min-w-[350px] bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="images/Jolly LLB 3.avif" class="w-full h-80 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-2xl font-bold">Jolly LLB 3</h3>
+                            <p class="text-gray-400 mb-3">⭐ 8.8/10 | Comedy, Drama</p>
+                            <a href="movie-details.html?id=jolly-llb-3"
+                                class="block text-center bg-primary-600 px-4 py-2 rounded-lg">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Movie 4 -->
+                    <div class="min-w-[350px] bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="images/Mahavatar Narsimha.avif" class="w-full h-80 object-contain" />
+                        <div class="p-5">
+                            <h3 class="text-2xl font-bold">Mahavatar Narsimha</h3>
+                            <p class="text-gray-400 mb-3">⭐ 9.6/10 | Action, Animation, Drama, Mythological</p>
+                            <a href="movie-details.html?id=mahavatar"
+                                class="block text-center bg-primary-600 px-4 py-2 rounded-lg">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Movie 5 -->
+                    <div class="min-w-[350px] bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="images/Lokah- Chapter 1 - Chandra.avif" class="w-full h-80 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-2xl font-bold">Lokah: Chapter 1 - Chandra</h3>
+                            <p class="text-gray-400 mb-3">⭐ 9.2/10 | Action, Comedy, Fantasy</p>
+                            <a href="movie-details.html?id=lokah-chandra"
+                                class="block text-center bg-primary-600 px-4 py-2 rounded-lg">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Movie 6 -->
+                    <div class="min-w-[350px] bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="images/Chhabi.avif" class="w-full h-80 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-2xl font-bold">Chhabi</h3>
+                            <p class="text-gray-400 mb-3">⭐ 8.4/10 | Drama, Suspense</p>
+                            <a href="movie-details.html?id=chhabi"
+                                class="block text-center bg-primary-600 px-4 py-2 rounded-lg">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Movie 7 -->
+                    <div class="min-w-[350px] bg-gray-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="images/The Bengal Files.avif" class="w-full h-80 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-2xl font-bold">The Bengal Files</h3>
+                            <p class="text-gray-400 mb-3">⭐ 8.9/10 | Drama, Historical</p>
+                            <a href="movie-details.html?id=bengal-files"
+                                class="block text-center bg-primary-600 px-4 py-2 rounded-lg">Book Now</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+    <!-- Login Required Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+        <div class="bg-gray-800 rounded-xl p-8 max-w-md text-center shadow-xl">
+            <h3 class="text-2xl font-bold mb-4 text-primary-500">Login Required</h3>
+            <p class="text-gray-300 mb-6">Please login or register to book your tickets.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="login.html"
+                    class="bg-primary-600 hover:bg-primary-700 px-6 py-2 rounded-lg text-white font-semibold">Login</a>
+                <button id="closeModal"
+                    class="bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded-lg text-white font-semibold">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="js/include.js"></script>
+
+    <script>
+        const carousel = document.getElementById("carousel");
+        const slides = document.querySelectorAll("#carousel > div");
+        const dots = document.querySelectorAll(".dot");
+        let index = 0;
+
+        function showSlide(i) {
+            index = (i + slides.length) % slides.length;
+            carousel.style.transform = `translateX(-${index * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, j) => {
+                dot.classList.toggle("bg-gray-400", j === index);
+                dot.classList.toggle("bg-gray-600", j !== index);
+            });
+        }
+
+        document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
+        document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
+        dots.forEach((dot, i) => dot.addEventListener("click", () => showSlide(i)));
+
+        // Auto-slide every 5s
+        setInterval(() => showSlide(index + 1), 5000);
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const bookButtons = document.querySelectorAll("a[href*='movie-details.html']");
+            const modal = document.getElementById("loginModal");
+            const closeModal = document.getElementById("closeModal");
+
+            const user = JSON.parse(localStorage.getItem("user"));
+
+            bookButtons.forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    if (!user) {
+                        e.preventDefault(); // stop navigation
+                        modal.classList.remove("hidden", "opacity-0");
+                        modal.classList.add("flex");
+                    }
+                });
+            });
+
+            closeModal.addEventListener("click", () => {
+                modal.classList.add("hidden");
+                modal.classList.remove("flex");
+            });
+        });
+    </script>
+</body>
+
+</html>

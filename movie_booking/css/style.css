@@ -1,0 +1,49 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+
+/* Global base */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Override Tailwind colors (primary theme) */
+.bg-primary-500 {
+  background-color: rgb(115 65 255) !important;
+  color: white !important;
+}
+.bg-primary-600 {
+  background-color: rgb(99 27 255) !important;
+  color: white !important;
+}
+.bg-primary-700 {
+  background-color: rgb(97 27 248) !important;
+  color: white !important;
+}
+
+/* Text color tweaks */
+.text-primary-500 {
+  color: rgb(115 65 255) !important;
+}
+.text-primary-600 {
+  color: rgb(99 27 255) !important;
+}
+
+.seat-custom {
+  width: 4.5rem;
+  height: 3.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.text-sm{
+  font-size: 1.5rem !important;
+}
+.text-lg{
+  font-size: 1.5rem !important;
+}
+
+.scrollbar-thin::-webkit-scrollbar { height: 8px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 999px; }
